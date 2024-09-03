@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Diagnostics;
 
 namespace hellorazor.Pages;
 
@@ -14,6 +15,8 @@ public class PrivacyModel : PageModel
 
     public void OnGet()
     {
+        var Procs = Process.GetProcesses();
+        ViewData["Procs"] = Procs;
     }
 }
 
