@@ -6,10 +6,11 @@ namespace MyApp.Namespace
 {
     public class DetailsModel : PageModel
     {
-        public void OnGet(int? id)
+        public Process SingleProcess { get; set; } = default!;
+        public void OnGet(int id)
         {
-            Process proc = Process.GetProcessById(id!.Value);
-            ViewData["Proc"] = proc;
+            //ViewData["P"] = Process.GetProcessById(id);
+            SingleProcess = Process.GetProcessById(id);
         }
     }
 }

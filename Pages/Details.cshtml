@@ -2,15 +2,24 @@
 @using System.Diagnostics
 @model MyApp.Namespace.DetailsModel
 @{
-    Process p = ViewData["Proc"] as Process;
+    //Process p = ViewData["Proc"] as Process;
+    ViewData["Title"] = $"Process with ID={Model.SingleProcess.Id}";
 }
 
+<h1>@ViewData["Title"]</h1>
+
 <div>
-    <h2>Details Page</h2>
+    <table class="table table-striped">
+        <tr>
+            <td>Process Name</td>
+            <td>@Model.SingleProcess.ProcessName</td>
+        </tr>
+        <tr>
+            <td>Number of threads</td>
+            <td>@Model.SingleProcess.Threads.Count</td>
+        </tr>
+    </table>
     <div>
-        @p.ProcessName
-        @p.Id
-        @p.BasePriority
-        @p.StartTime
+        <a asp-page="./process">Back to list</a>
     </div>
 </div>
