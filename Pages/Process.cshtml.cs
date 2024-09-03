@@ -1,16 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Diagnostics;
 
-namespace MyApp.Namespace
+namespace MyApp.Namespace;
+
+public class ProcessModel : PageModel
 {
-    public class ProcessModel : PageModel
+    public void OnGet()
     {
-        public void OnGet()
-        {
-            ViewData["Message"] = "Your message goes here!";
-            string[] people = {"Jeff", "John", "Jane", "Jill"};
-            ViewData["People"] = people;
-
-        }
+        Process[] processes = Process.GetProcesses();
+        ViewData["P"] = processes;
     }
 }

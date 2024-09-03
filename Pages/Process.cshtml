@@ -2,15 +2,17 @@
 @using System.Diagnostics
 @model MyApp.Namespace.ProcessModel
 @{
-    Process[] procs = ViewData["Procs"] as Process[];
+    ViewData["Title"] = "OS Processes";
+    Process[]? processes = ViewData["P"] as Process[];
 }
 
-<div>
-    <h2>Process Page</h2>
-    @foreach (Process p in procs)
-    {
-        <div>
-            @p.ProcessName
-        </div>
-    }
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]!</h1>
+        @foreach (Process item in processes!)
+        {
+            @if (item.ProcessName.Trim().Length > 0)
+            {
+                <p><a asp-page="./Details" asp-route-id="@item.Id">@item.ProcessName</a></p>
+            }
+        }
 </div>
