@@ -22,16 +22,21 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Build with dotnet
-        run: dotnet build --configuration Release
+        # specify the project file name HelloRazor.csproj
+        run: dotnet build hellorazor.csproj --configuration Release
 
       - name: dotnet publish
+        # change DOTNET_ROOT to GITHUB_WORKSPACE 
+        # specify the project file name hellorazor.csproj
+        run: dotnet publish hellorazor.csproj -c Release -o ${{env.GITHUB_WORKSPACE}}/myapp
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          # change DOTNET_ROOT to GITHUB_WORKSPACE
+          path: ${{env.GITHUB_WORKSPACE}}/myapp
 
   deploy:
     runs-on: windows-latest
